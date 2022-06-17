@@ -1,14 +1,25 @@
 import re
 import requests
 
-r = requests.get("https://en.wikipedia.org/wiki/Text_messaging")
+r = requests.get("https://de.wikipedia.org/wiki/Mittelalter")
 r = r.text
 r = re.split('href="|"', r)
+count = 0
+i = 0
 for x in r:
-    if x.startswith("http"):
+    if re.match("^http[s]?:", x):
+        count += 1
+f = open("output.txt" ,"w")
+for x in r:
+    if re.match("^http[s]?:", x):
+        i+=1
+        if "\\" in x:
+            x = x.replace("\\", "")
+        print(str(i) + " / " + str(count) + "    " + x)
         try:
             ra = requests.get(x)
             if ra.status_code == 200:
-                print(ra.text)
+                f.write(ra.text)
         except:
-            print(x + " THREW AN ERROR")
+            print("THREW AN ERROR")
+f.close()
