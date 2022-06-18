@@ -10,7 +10,7 @@ i = 0
 for x in r:
     if re.match("^http[s]?:", x):
         count += 1
-a = open("/home/ponty/Git/PythonHtmlGetter/output/index.html", "w")
+a = open("./output/index.html", "w")
 a.write('<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <title>index</title></head><body>')
 for x in r:
     if re.match("^http[s]?:", x):
@@ -21,7 +21,7 @@ for x in r:
         try:
             ra = requests.get(x)
             if ra.status_code == 200:
-                f = open("/home/ponty/Git/PythonHtmlGetter/output/" + str(i) + "output.html", "w")
+                f = open("./output/" + str(i) + "output.html", "w")
                 a.write('<a href="' + str(i) + 'output.html"><p>'+ str(i) + 'output.html </p></a>')
                 f.write(ra.text)
                 f.close()
