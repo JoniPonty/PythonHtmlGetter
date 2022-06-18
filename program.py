@@ -23,6 +23,7 @@ for x in r:
             if ra.status_code == 200:
                 f = open("./output/" + str(i) + "output.html", "w")
                 a.write('<a href="' + str(i) + 'output.html"><p>'+ str(i) + 'output.html </p></a>')
+                a.write("\n")
                 f.write(ra.text)
                 f.close()
         except:
