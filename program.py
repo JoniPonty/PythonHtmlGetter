@@ -1,9 +1,11 @@
 import re
+import sys
 import requests
 import os
 from functions import *
 
-r = requests.get("https://www.w3schools.com/python/python_try_except.asp")
+link = str(sys.argv[1])
+r = requests.get(link)
 r = r.text
 r = re.split('href="|"', r)
 count = 0
@@ -15,6 +17,7 @@ a = open("./output/index.html", "w")
 b = open("./data/index.html", "w")
 a.write('<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <title>index</title></head><body>')
 b.write('<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <title>index</title></head><body>')
+r.append(sys.argv[1])
 for x in r:
     if re.match("^http[s]?:", x):
         i+=1
